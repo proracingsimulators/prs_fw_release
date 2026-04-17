@@ -1,0 +1,19 @@
+{
+  "baseName": "prs-seat-belt",
+  "jsonName": "seat_belt",
+  "latest": "1.1.0.4",
+  "versions": [
+    {
+      "version": "1.1.0.4",
+      "file": "1.1.0.4.json",
+      "sourceFile": "seat_belt.json",
+      "releasedAt": "2026-04-17T17:43:16.038187+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# SeatBeltPRS Release",
+        "### Added",
+        "- Removido limites do servo motor"
+      ]
+    }
+  ]
+}
