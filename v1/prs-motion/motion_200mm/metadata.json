@@ -1,0 +1,20 @@
+{
+  "baseName": "prs-motion",
+  "jsonName": "motion_200mm",
+  "latest": "1.0.0.14",
+  "versions": [
+    {
+      "version": "1.0.0.14",
+      "file": "1.0.0.14.json",
+      "sourceFile": "motion_200mm.json",
+      "releasedAt": "2026-04-17T17:59:49.792258+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# MotionPRS Release",
+        "### Added",
+        "- Adicionado suporte para esp01 (usado para testes)",
+        "- Adicionado targets para os diferentes tipos de motion (50, 60, 80 e 200mm)"
+      ]
+    }
+  ]
+}
