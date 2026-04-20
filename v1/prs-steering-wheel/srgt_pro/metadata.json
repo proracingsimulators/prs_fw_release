@@ -1,0 +1,19 @@
+{
+  "baseName": "prs-steering-wheel",
+  "jsonName": "srgt_pro",
+  "latest": "0.1.0.13",
+  "versions": [
+    {
+      "version": "0.1.0.13",
+      "file": "0.1.0.13.json",
+      "sourceFile": "srgt_pro.json",
+      "releasedAt": "2026-04-20T11:20:16.300165+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# SteeringWheelPRS Release",
+        "### Added",
+        "- Adicionado embreagens combinadas (PrsAxisLink) para o volante SR-GT Lightning"
+      ]
+    }
+  ]
+}
