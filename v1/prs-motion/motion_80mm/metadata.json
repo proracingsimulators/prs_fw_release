@@ -1,7 +1,7 @@
 {
   "baseName": "prs-motion",
   "jsonName": "motion_80mm",
-  "latest": "1.0.0.14",
+  "latest": "1.0.0.15",
   "versions": [
     {
       "version": "1.0.0.14",
@@ -14,6 +14,20 @@
         "### Added",
         "- Adicionado suporte para esp01 (usado para testes)",
         "- Adicionado targets para os diferentes tipos de motion (50, 60, 80 e 200mm)"
+      ]
+    },
+    {
+      "version": "1.0.0.15",
+      "file": "1.0.0.15.json",
+      "sourceFile": "motion_80mm.json",
+      "releasedAt": "2026-04-22T17:21:39.085850+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# MotionPRS Release",
+        "### Added",
+        "- Adicionado suporte para esp01 (usado para testes)",
+        "- Adicionado targets para os diferentes tipos de motion (50, 60, 80 e 200mm)",
+        "- Atualizado os PIDs para os diferentes targets"
       ]
     }
   ]
