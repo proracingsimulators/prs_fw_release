@@ -1,13 +1,26 @@
 {
   "baseName": "prs-pedal",
   "jsonName": "sport",
-  "latest": "0.1.1.9",
+  "latest": "0.1.1.10",
   "versions": [
     {
       "version": "0.1.1.9",
       "file": "0.1.1.9.json",
       "sourceFile": "sport.json",
       "releasedAt": "2026-04-17T14:41:37.546530+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# PedalPRS Release",
+        "### Added",
+        "- Ajuste na tolerancia do filtro de ruído do hx711",
+        "- Adicionado publicação de release no repositório prs_fw_release"
+      ]
+    },
+    {
+      "version": "0.1.1.10",
+      "file": "0.1.1.10.json",
+      "sourceFile": "sport.json",
+      "releasedAt": "2026-05-05T11:20:22.860679+00:00",
       "changesFile": "changes.txt",
       "changes": [
         "# PedalPRS Release",
