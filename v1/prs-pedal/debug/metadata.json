@@ -1,7 +1,7 @@
 {
   "baseName": "prs-pedal",
   "jsonName": "debug",
-  "latest": "0.1.1.10",
+  "latest": "0.2.0.0",
   "versions": [
     {
       "version": "0.1.1.9",
@@ -27,6 +27,21 @@
         "### Added",
         "- Ajuste na tolerancia do filtro de ruído do hx711",
         "- Adicionado publicação de release no repositório prs_fw_release"
+      ]
+    },
+    {
+      "version": "0.2.0.0",
+      "file": "0.2.0.0.json",
+      "sourceFile": "debug.json",
+      "releasedAt": "2026-05-26T13:55:27.065121+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# PedalPRS Release",
+        "### Added",
+        "- Removido filtro de tolerância do hx711",
+        "- Adicionado filtro de mediana",
+        "- Alterado SDK do maple para utilizar o SDK customizado da PRS com bInterval igual a 1ms",
+        "- Correção de BUG causado por congestionamento de dados na porta serial ao modificar o bInterval do maple de 0x0A para 0x01 ms"
       ]
     }
   ]
