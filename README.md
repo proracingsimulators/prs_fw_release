@@ -14,6 +14,8 @@ v1/{baseName}/{jsonName}/metadata.json
 
 Isso permite manter histórico de versões por firmware e suportar evolução de formato (prefixo `v1`).
 
+Além disso, um `metadata.json` no nível do `baseName` é gerado/atualizado com a lista de subpastas (targets) disponíveis, permitindo que o mecanismo de atualização descubra automaticamente quais targets existem para cada produto.
+
 ## Requisitos
 
 - Python 3.8+
