@@ -145,6 +145,21 @@ def update_metadata(
 		fp.write("\n")
 
 
+def update_base_metadata(base_dir: Path, base_name: str) -> None:
+	folders = sorted(entry.name for entry in base_dir.iterdir() if entry.is_dir())
+
+	metadata = {
+		"baseName": base_name,
+		"folders": folders,
+		"updatedAt": datetime.now(timezone.utc).isoformat(),
+	}
+
+	metadata_path = base_dir / "metadata.json"
+	with metadata_path.open("w", encoding="utf-8") as fp:
+		json.dump(metadata, fp, indent=2, ensure_ascii=False)
+		fp.write("\n")
+
+
 def generate_release_structure(release_dir: Path, base_name: str) -> None:
 	if not release_dir.is_dir():
 		raise NotADirectoryError(f"Release directory not found: {release_dir}")
@@ -171,6 +186,10 @@ def generate_release_structure(release_dir: Path, base_name: str) -> None:
 		)
 
 		print(f"Generated release for {json_name} ({version})")
+
+	base_dir = Path("v1") / base_name
+	update_base_metadata(base_dir, base_name)
+	print(f"Updated base metadata for {base_name}")
 
 
 def main() -> None:
