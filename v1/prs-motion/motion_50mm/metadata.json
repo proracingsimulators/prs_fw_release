@@ -1,7 +1,7 @@
 {
   "baseName": "prs-motion",
   "jsonName": "motion_50mm",
-  "latest": "1.0.0.17",
+  "latest": "1.0.0.18",
   "versions": [
     {
       "version": "1.0.0.14",
@@ -50,6 +50,21 @@
       "file": "1.0.0.17.json",
       "sourceFile": "motion_50mm.json",
       "releasedAt": "2026-06-05T14:44:05.840886+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# MotionPRS Release",
+        "### Added",
+        "- Adicionado suporte para esp01 (usado para testes)",
+        "- Adicionado targets para os diferentes tipos de motion (50, 60, 80 e 200mm)",
+        "- Atualizados os PIDs para os diferentes targets",
+        "- Adicionado filtro biquad para suavização do movimento do motion"
+      ]
+    },
+    {
+      "version": "1.0.0.18",
+      "file": "1.0.0.18.json",
+      "sourceFile": "motion_50mm.json",
+      "releasedAt": "2026-06-05T18:33:37.088824+00:00",
       "changesFile": "changes.txt",
       "changes": [
         "# MotionPRS Release",
