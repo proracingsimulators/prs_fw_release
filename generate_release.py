@@ -30,6 +30,12 @@ def parse_args() -> argparse.Namespace:
 		"base_name",
 		help="Base project name used as output root folder",
 	)
+	parser.add_argument(
+		"release_type",
+		choices=["stable", "beta", "alpha"],
+		default="alpha",
+		help="Release type (optional, default: stable)",
+	)
 	return parser.parse_args()
 
 
@@ -145,7 +151,22 @@ def update_metadata(
 		fp.write("\n")
 
 
-def generate_release_structure(release_dir: Path, base_name: str) -> None:
+def update_base_metadata(base_dir: Path, base_name: str) -> None:
+	folders = sorted(entry.name for entry in base_dir.iterdir() if entry.is_dir())
+
+	metadata = {
+		"baseName": base_name,
+		"folders": folders,
+		"updatedAt": datetime.now(timezone.utc).isoformat(),
+	}
+
+	metadata_path = base_dir / "metadata.json"
+	with metadata_path.open("w", encoding="utf-8") as fp:
+		json.dump(metadata, fp, indent=2, ensure_ascii=False)
+		fp.write("\n")
+
+
+def generate_release_structure(release_dir: Path, base_name: str, release_type: str) -> None:
 	if not release_dir.is_dir():
 		raise NotADirectoryError(f"Release directory not found: {release_dir}")
 
@@ -158,7 +179,8 @@ def generate_release_structure(release_dir: Path, base_name: str) -> None:
 		target_dir = Path("v1") / base_name / json_name
 		target_dir.mkdir(parents=True, exist_ok=True)
 
-		copy2(source_json_path, target_dir / "lastest.json")
+		copy2(source_json_path, target_dir / "latest.json")
+		copy2(source_json_path, target_dir / f"latest-{release_type}.json")
 		copy2(source_json_path, target_dir / f"{version}.json")
 
 		update_metadata(
@@ -172,10 +194,14 @@ def generate_release_structure(release_dir: Path, base_name: str) -> None:
 
 		print(f"Generated release for {json_name} ({version})")
 
+	base_dir = Path("v1") / base_name
+	update_base_metadata(base_dir, base_name)
+	print(f"Updated base metadata for {base_name}")
+
 
 def main() -> None:
 	args = parse_args()
-	generate_release_structure(args.release_dir, args.base_name)
+	generate_release_structure(args.release_dir, args.base_name, args.release_type)
 
 
 if __name__ == "__main__":
