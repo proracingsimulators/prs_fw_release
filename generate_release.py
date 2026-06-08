@@ -30,6 +30,12 @@ def parse_args() -> argparse.Namespace:
 		"base_name",
 		help="Base project name used as output root folder",
 	)
+	parser.add_argument(
+		"release_version",
+		choices=["stable", "beta", "alpha"],
+		default="stable",
+		help="Release version (optional, default: stable)",
+	)
 	return parser.parse_args()
 
 
@@ -160,7 +166,7 @@ def update_base_metadata(base_dir: Path, base_name: str) -> None:
 		fp.write("\n")
 
 
-def generate_release_structure(release_dir: Path, base_name: str) -> None:
+def generate_release_structure(release_dir: Path, base_name: str, release_version: str) -> None:
 	if not release_dir.is_dir():
 		raise NotADirectoryError(f"Release directory not found: {release_dir}")
 
@@ -173,7 +179,8 @@ def generate_release_structure(release_dir: Path, base_name: str) -> None:
 		target_dir = Path("v1") / base_name / json_name
 		target_dir.mkdir(parents=True, exist_ok=True)
 
-		copy2(source_json_path, target_dir / "lastest.json")
+		copy2(source_json_path, target_dir / "latest.json")
+		copy2(source_json_path, target_dir / f"latest-{release_version}.json")
 		copy2(source_json_path, target_dir / f"{version}.json")
 
 		update_metadata(
@@ -194,7 +201,7 @@ def generate_release_structure(release_dir: Path, base_name: str) -> None:
 
 def main() -> None:
 	args = parse_args()
-	generate_release_structure(args.release_dir, args.base_name)
+	generate_release_structure(args.release_dir, args.base_name, args.release_version)
 
 
 if __name__ == "__main__":
