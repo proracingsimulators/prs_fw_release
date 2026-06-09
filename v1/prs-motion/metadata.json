@@ -1,0 +1,10 @@
+{
+  "baseName": "prs-motion",
+  "folders": [
+    "motion_200mm",
+    "motion_50mm",
+    "motion_60mm",
+    "motion_80mm"
+  ],
+  "updatedAt": "2026-06-09T14:28:40.327208+00:00"
+}
