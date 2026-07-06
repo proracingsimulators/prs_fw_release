@@ -1,7 +1,7 @@
 {
   "baseName": "prs-steering-wheel",
   "jsonName": "srgt_pro",
-  "latest": "0.1.0.18",
+  "latest": "0.1.0.19",
   "versions": [
     {
       "version": "0.1.0.13",
@@ -73,6 +73,21 @@
       "file": "0.1.0.18.json",
       "sourceFile": "srgt_pro.json",
       "releasedAt": "2026-07-03T13:51:31.233746+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# SteeringWheelPRS Release",
+        "### Added",
+        "- Adicionado embreagens combinadas (PrsAxisLink) para o volante SR-GT Lightning",
+        "- Atualizado controlador do volante para utilizar IPrsLedsRawController",
+        "- Adicionado efeito estático PrsEffectMedian3 para o volante SR-GT Lightning",
+        "- Removido targets descontinuados do fluxo de compilação do projeto"
+      ]
+    },
+    {
+      "version": "0.1.0.19",
+      "file": "0.1.0.19.json",
+      "sourceFile": "srgt_pro.json",
+      "releasedAt": "2026-07-06T14:36:25.572822+00:00",
       "changesFile": "changes.txt",
       "changes": [
         "# SteeringWheelPRS Release",
