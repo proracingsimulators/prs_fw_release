@@ -177,8 +177,8 @@ def generate_release_structure(release_dir: Path, base_name: str, release_type: 
 
 	for source_json_path in json_files:
 		json_name = source_json_path.stem
-		version = extract_info_from_json(source_json_path, ("Version", "version"))
-		min_app_version = extract_info_from_json(source_json_path, ("MinAppVersion", "min_app_version"))
+		version = extract_info_from_json(source_json_path, ["Version", "version"])
+		min_app_version = extract_info_from_json(source_json_path, ["MinAppVersion", "min_app_version"])
 		target_dir = Path("v1") / base_name / json_name
 		target_dir.mkdir(parents=True, exist_ok=True)
 
