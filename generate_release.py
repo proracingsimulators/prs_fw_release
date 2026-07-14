@@ -82,7 +82,7 @@ def extract_info_from_json(json_file_path: Path, key_variants: List[str]) -> str
 			return info_value
 
 	raise ValueError(
-		f"{key_variants[0]} field not found in '{json_file_path.name}'. "
+		f"None of the expected keys found in '{json_file_path.name}'. "
 		f"Expected one of: {', '.join(key_variants)}."
 	)
 
