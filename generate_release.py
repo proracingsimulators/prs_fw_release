@@ -65,25 +65,25 @@ def get_release_json_files(release_dir: Path) -> List[Path]:
 	return json_files
 
 
-def extract_version_from_json(json_file_path: Path) -> str:
+def extract_info_from_json(json_file_path: Path, key_variants: List[str]) -> str:
 	with json_file_path.open("r", encoding="utf-8") as fp:
 		payload = json.load(fp)
 
 	if not isinstance(payload, dict):
 		raise ValueError(f"JSON root must be an object in file: {json_file_path}")
 
-	for key in ("Version", "version"):
+	for key in key_variants:
 		value = payload.get(key)
 		if value is None:
 			continue
 
-		version = str(value).strip()
-		if version:
-			return version
+		info_value = str(value).strip()
+		if info_value:
+			return info_value
 
 	raise ValueError(
-		f"Version field not found in '{json_file_path.name}'. "
-		"Expected 'Version' or 'version'."
+		f"None of the expected keys found in '{json_file_path.name}'. "
+		f"Expected one of: {', '.join(key_variants)}."
 	)
 
 
@@ -111,6 +111,7 @@ def update_metadata(
 	version: str,
 	source_file_name: str,
 	changes: List[str],
+	min_app_version: str,
 ) -> None:
 	metadata = load_existing_metadata(metadata_path)
 	versions = metadata.get("versions", [])
@@ -125,6 +126,7 @@ def update_metadata(
 		"releasedAt": datetime.now(timezone.utc).isoformat(),
 		"changesFile": "changes.txt",
 		"changes": changes,
+		"minAppVersion": min_app_version,
 	}
 
 	replaced = False
@@ -175,7 +177,8 @@ def generate_release_structure(release_dir: Path, base_name: str, release_type: 
 
 	for source_json_path in json_files:
 		json_name = source_json_path.stem
-		version = extract_version_from_json(source_json_path)
+		version = extract_info_from_json(source_json_path, ["Version", "version"])
+		min_app_version = extract_info_from_json(source_json_path, ["MinAppVersion", "min_app_version"])
 		target_dir = Path("v1") / base_name / json_name
 		target_dir.mkdir(parents=True, exist_ok=True)
 
@@ -190,6 +193,7 @@ def generate_release_structure(release_dir: Path, base_name: str, release_type: 
 			version=version,
 			source_file_name=source_json_path.name,
 			changes=changes,
+			min_app_version=min_app_version,
 		)
 
 		print(f"Generated release for {json_name} ({version})")
