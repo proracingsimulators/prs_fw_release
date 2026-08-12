@@ -25,6 +25,20 @@ class GenerateReleaseTest(unittest.TestCase):
             metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
             self.assertIsNone(metadata["versions"][0]["minAppVersion"])
 
+    def test_empty_min_app_version_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            release_dir = Path(tmp_dir)
+            (release_dir / "changes.txt").write_text("- change 1\n", encoding="utf-8")
+            firmware = {
+                "Version": "1.2.3",
+                "MinAppVersion": "   "
+            }
+            source = release_dir / "firmware.json"
+            source.write_text(json.dumps(firmware), encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "empty or whitespace"):
+                generate_release_structure(release_dir, "prs-test", "alpha")
+
 
 if __name__ == "__main__":
     unittest.main()
