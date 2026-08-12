@@ -14,7 +14,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from shutil import copy2
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 def parse_args() -> argparse.Namespace:
@@ -65,7 +65,12 @@ def get_release_json_files(release_dir: Path) -> List[Path]:
 	return json_files
 
 
-def extract_info_from_json(json_file_path: Path, key_variants: List[str]) -> str:
+def extract_info_from_json(
+	json_file_path: Path,
+	key_variants: List[str],
+	*,
+	required: bool = True,
+) -> Optional[str]:
 	with json_file_path.open("r", encoding="utf-8") as fp:
 		payload = json.load(fp)
 
@@ -77,9 +82,18 @@ def extract_info_from_json(json_file_path: Path, key_variants: List[str]) -> str
 		if value is None:
 			continue
 
+		if isinstance(value, str) and not value.strip():
+			raise ValueError(
+				f"Key '{key}' in '{json_file_path.name}' is empty or whitespace. "
+				f"Expected a non-empty value when present."
+			)
+
 		info_value = str(value).strip()
 		if info_value:
 			return info_value
+
+	if not required:
+		return None
 
 	raise ValueError(
 		f"None of the expected keys found in '{json_file_path.name}'. "
@@ -111,7 +125,7 @@ def update_metadata(
 	version: str,
 	source_file_name: str,
 	changes: List[str],
-	min_app_version: str,
+	min_app_version: Optional[str],
 ) -> None:
 	metadata = load_existing_metadata(metadata_path)
 	versions = metadata.get("versions", [])
@@ -178,7 +192,11 @@ def generate_release_structure(release_dir: Path, base_name: str, release_type: 
 	for source_json_path in json_files:
 		json_name = source_json_path.stem
 		version = extract_info_from_json(source_json_path, ["Version", "version"])
-		min_app_version = extract_info_from_json(source_json_path, ["MinAppVersion", "min_app_version"])
+		min_app_version = extract_info_from_json(
+			source_json_path,
+			["MinAppVersion", "min_app_version"],
+			required=False,
+		)
 		target_dir = Path("v1") / base_name / json_name
 		target_dir.mkdir(parents=True, exist_ok=True)
 

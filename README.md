@@ -38,7 +38,7 @@ python generate_release.py <release_dir> <base_name>
 
 A versão é extraída automaticamente de cada arquivo JSON, usando a chave `Version` (ou `version`).
 
-A versão mínima de app compatível também é extraída automaticamente de cada arquivo JSON, usando a chave `MinAppVersion` (ou `min_app_version`), e gravada no `metadata.json` para permitir verificação de breaking change na sincronização de firmware.
+A versão mínima de app compatível também é extraída automaticamente de cada arquivo JSON, usando a chave `MinAppVersion` (ou `min_app_version`). Quando a chave não existir, o campo é gravado como `null` no `metadata.json`, o que significa que qualquer versão de app é aceita.
 
 ## Exemplo (Windows)
 
@@ -81,7 +81,7 @@ v1/
 - Falha se não houver arquivos `.json` no diretório.
 - Falha se algum `.json` estiver inválido.
 - Falha se o JSON não tiver a chave `Version` ou `version`.
-- Falha se o JSON não tiver a chave `MinAppVersion` ou `min_app_version`.
+- Não falha se o JSON não tiver a chave `MinAppVersion` ou `min_app_version`; nesse caso, o campo fica como `null` no metadata.
 
 ## Observações
 
