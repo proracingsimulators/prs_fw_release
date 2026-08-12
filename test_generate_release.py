@@ -1,4 +1,5 @@
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -18,11 +19,16 @@ class GenerateReleaseTest(unittest.TestCase):
             source = release_dir / "firmware.json"
             source.write_text(json.dumps(firmware), encoding="utf-8")
 
-            generate_release_structure(release_dir, "prs-test", "alpha")
+            original_cwd = Path.cwd()
+            os.chdir(release_dir)
+            try:
+                generate_release_structure(release_dir, "prs-test", "alpha")
+            finally:
+                os.chdir(original_cwd)
 
             metadata_path = Path("v1") / "prs-test" / "firmware" / "metadata.json"
-            self.assertTrue(metadata_path.is_file())
-            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            self.assertTrue((release_dir / metadata_path).is_file())
+            metadata = json.loads((release_dir / metadata_path).read_text(encoding="utf-8"))
             self.assertIsNone(metadata["versions"][0]["minAppVersion"])
 
     def test_empty_min_app_version_is_rejected(self):
@@ -36,8 +42,13 @@ class GenerateReleaseTest(unittest.TestCase):
             source = release_dir / "firmware.json"
             source.write_text(json.dumps(firmware), encoding="utf-8")
 
-            with self.assertRaisesRegex(ValueError, "empty or whitespace"):
-                generate_release_structure(release_dir, "prs-test", "alpha")
+            original_cwd = Path.cwd()
+            os.chdir(release_dir)
+            try:
+                with self.assertRaisesRegex(ValueError, "empty or whitespace"):
+                    generate_release_structure(release_dir, "prs-test", "alpha")
+            finally:
+                os.chdir(original_cwd)
 
 
 if __name__ == "__main__":
