@@ -154,7 +154,7 @@
       "version": "1.0.0.24",
       "file": "1.0.0.24.json",
       "sourceFile": "motion_60mm.json",
-      "releasedAt": "2026-07-10T18:21:42.844301+00:00",
+      "releasedAt": "2026-08-12T19:33:31.716712+00:00",
       "changesFile": "changes.txt",
       "changes": [
         "# MotionPRS Release",
@@ -163,7 +163,8 @@
         "- Adicionado targets para os diferentes tipos de motion (50, 60, 80 e 200mm)",
         "- Atualizados os PIDs para os diferentes targets",
         "- Adicionado filtro biquad para suavização do movimento do motion"
-      ]
+      ],
+      "minAppVersion": null
     }
   ]
 }
