@@ -82,6 +82,12 @@ def extract_info_from_json(
 		if value is None:
 			continue
 
+		if isinstance(value, str) and not value.strip():
+			raise ValueError(
+				f"Key '{key}' in '{json_file_path.name}' is empty or whitespace. "
+				f"Expected a non-empty value when present."
+			)
+
 		info_value = str(value).strip()
 		if info_value:
 			return info_value
