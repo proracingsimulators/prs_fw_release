@@ -14,7 +14,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from shutil import copy2
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 def parse_args() -> argparse.Namespace:
@@ -70,7 +70,7 @@ def extract_info_from_json(
 	key_variants: List[str],
 	*,
 	required: bool = True,
-) -> str | None:
+) -> Optional[str]:
 	with json_file_path.open("r", encoding="utf-8") as fp:
 		payload = json.load(fp)
 
@@ -125,7 +125,7 @@ def update_metadata(
 	version: str,
 	source_file_name: str,
 	changes: List[str],
-	min_app_version: str | None,
+	min_app_version: Optional[str],
 ) -> None:
 	metadata = load_existing_metadata(metadata_path)
 	versions = metadata.get("versions", [])
