@@ -151,7 +151,7 @@
       "version": "0.1.0.23",
       "file": "0.1.0.23.json",
       "sourceFile": "srgt_pro.json",
-      "releasedAt": "2026-08-03T14:12:07.816286+00:00",
+      "releasedAt": "2026-08-12T19:24:21.470482+00:00",
       "changesFile": "changes.txt",
       "changes": [
         "# SteeringWheelPRS Release",
@@ -162,7 +162,8 @@
         "- Removido targets descontinuados do fluxo de compilação do projeto",
         "- Adicionado eixos para monitoramento analógico das marchas",
         "- Substituída a calibração automática por calibração manual"
-      ]
+      ],
+      "minAppVersion": null
     }
   ]
 }
