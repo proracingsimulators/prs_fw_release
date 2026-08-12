@@ -26,9 +26,9 @@ class GenerateReleaseTest(unittest.TestCase):
             finally:
                 os.chdir(original_cwd)
 
-            metadata_path = Path("v1") / "prs-test" / "firmware" / "metadata.json"
-            self.assertTrue((release_dir / metadata_path).is_file())
-            metadata = json.loads((release_dir / metadata_path).read_text(encoding="utf-8"))
+            metadata_path = release_dir / "v1" / "prs-test" / "firmware" / "metadata.json"
+            self.assertTrue(metadata_path.is_file())
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
             self.assertIsNone(metadata["versions"][0]["minAppVersion"])
 
     def test_empty_min_app_version_is_rejected(self):
