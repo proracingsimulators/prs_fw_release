@@ -58,7 +58,7 @@ v1/
   prs-pedal/
     metadata.json       <- lista as pastas de target dentro de prs-pedal/
     sport/
-      lastest.json
+      latest.json
       1.2.3.json
       metadata.json
 ```
