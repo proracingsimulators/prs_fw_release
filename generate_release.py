@@ -182,16 +182,16 @@ def update_base_metadata(base_dir: Path, base_name: str) -> None:
 		fp.write("\n")
 
 
-def update_root_metadata(v1_dir: Path) -> None:
-	folders = sorted(entry.name for entry in v1_dir.iterdir() if entry.is_dir())
+def update_root_metadata(v_dir: Path) -> None:
+	folders = sorted(entry.name for entry in v_dir.iterdir() if entry.is_dir())
 
 	metadata = {
-		"baseName": "v1",
+		"baseName": v_dir.name,
 		"folders": folders,
 		"updatedAt": datetime.now(timezone.utc).isoformat(),
 	}
 
-	metadata_path = v1_dir.parent / "metadata.json"
+	metadata_path = v_dir.parent / "metadata.json"
 	with metadata_path.open("w", encoding="utf-8") as fp:
 		json.dump(metadata, fp, indent=2, ensure_ascii=False)
 		fp.write("\n")
