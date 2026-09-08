@@ -1,0 +1,10 @@
+{
+  "baseName": "v1",
+  "folders": [
+    "prs-motion",
+    "prs-pedal",
+    "prs-seat-belt",
+    "prs-steering-wheel"
+  ],
+  "updatedAt": "2026-09-03T17:22:12.894055+00:00"
+}

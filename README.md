@@ -16,6 +16,8 @@ Isso permite manter histórico de versões por firmware e suportar evolução de
 
 Além disso, um `metadata.json` no nível do `baseName` é gerado/atualizado com a lista de subpastas (targets) disponíveis, permitindo que o mecanismo de atualização descubra automaticamente quais targets existem para cada produto.
 
+Da mesma forma, um `metadata.json` na raiz do repositório é gerado/atualizado com a lista de todas as pastas de produto existentes dentro de `v1/` (ex.: `prs-motion`, `prs-pedal`, `prs-seat-belt`, `prs-steering-wheel`). Esse arquivo é recalculado a cada execução do script, listando o conteúdo atual de `v1/` — por isso não é necessário rastrear manualmente quais pastas já existem: qualquer pasta presente em `v1/` (criada por este script ou não) aparece automaticamente na próxima atualização.
+
 ## Requisitos
 
 - Python 3.8+
@@ -51,10 +53,12 @@ python .\generate_release.py D:\projects\prs\prs_pedal_fw\release prs-pedal
 Se existir um arquivo `sport.json` no diretório de entrada:
 
 ```text
+metadata.json          <- lista as pastas de produto dentro de v1/
 v1/
   prs-pedal/
+    metadata.json       <- lista as pastas de target dentro de prs-pedal/
     sport/
-      lastest.json
+      latest.json
       1.2.3.json
       metadata.json
 ```
