@@ -1,7 +1,7 @@
 {
   "baseName": "prs-motion",
   "jsonName": "motion_200mm",
-  "latest": "1.0.0.25",
+  "latest": "1.0.0.26",
   "versions": [
     {
       "version": "1.0.0.14",
@@ -181,6 +181,21 @@
         "- Adicionado filtro biquad para suavização do movimento do motion",
         "### Fixed",
         "- Posição dos motores fica no centro enquanto a fonte está desligada, para o serviço não ler 0 antes do homing"
+      ],
+      "minAppVersion": null
+    },
+    {
+      "version": "1.0.0.26",
+      "file": "1.0.0.26.json",
+      "sourceFile": "motion_200mm.json",
+      "releasedAt": "2026-11-17T16:46:59.097482+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# MotionPRS Release",
+        "### Fixed",
+        "- Posição dos motores fica no centro enquanto a fonte está desligada, para o serviço não ler 0 antes do homing",
+        "- Posição dos motores começa no centro quando a placa liga com a fonte já ligada (reset ou USB reconectado), sem refazer o homing",
+        "- Atualizado o prs_sdk_fw para 2.0.0.31: a posição informada ao serviço passa a ser a posição real dos motores"
       ],
       "minAppVersion": null
     }
