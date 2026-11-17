@@ -1,7 +1,7 @@
 {
   "baseName": "prs-steering-wheel",
   "jsonName": "srgt_pro",
-  "latest": "0.1.0.25",
+  "latest": "0.1.0.26",
   "versions": [
     {
       "version": "0.1.0.13",
@@ -194,6 +194,23 @@
         "### Added",
         "- Adicionado controle de brilho dos LEDs pelo PRS Control, com teto de brilho por target (TARGET_LEDS_MAX_BRIGHTNESS)",
         "- Atualizado o prs_sdk_fw para 2.0.0.30",
+        "### Fixed",
+        "- Corrigida a calibração de marchas e embreagens com sensor invertido (faixa invertida): o eixo responde em rampa invertida em vez de travar num dos limites",
+        "- Corrigido o recálculo da zona morta ao alterar a calibração do eixo"
+      ],
+      "minAppVersion": null
+    },
+    {
+      "version": "0.1.0.26",
+      "file": "0.1.0.26.json",
+      "sourceFile": "srgt_pro.json",
+      "releasedAt": "2026-11-17T17:20:17.910318+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# SteeringWheelPRS Release",
+        "### Added",
+        "- Adicionado controle de brilho dos LEDs pelo PRS Control, com teto de brilho por target (TARGET_LEDS_MAX_BRIGHTNESS)",
+        "- Atualizado o prs_sdk_fw para 2.0.0.31",
         "### Fixed",
         "- Corrigida a calibração de marchas e embreagens com sensor invertido (faixa invertida): o eixo responde em rampa invertida em vez de travar num dos limites",
         "- Corrigido o recálculo da zona morta ao alterar a calibração do eixo"
