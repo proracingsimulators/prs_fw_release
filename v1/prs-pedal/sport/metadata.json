@@ -1,7 +1,7 @@
 {
   "baseName": "prs-pedal",
   "jsonName": "sport",
-  "latest": "0.2.0.4",
+  "latest": "0.2.0.5",
   "versions": [
     {
       "version": "0.1.1.9",
@@ -109,6 +109,20 @@
         "- Substituído filtro de mediana simples por mediana de 3.",
         "### Fixed",
         "- Firmware de debug publicado linkado para o bootloader (0x08002000); o anterior, gravado pela atualização de firmware, deixava a placa travada no bootloader"
+      ],
+      "minAppVersion": null
+    },
+    {
+      "version": "0.2.0.5",
+      "file": "0.2.0.5.json",
+      "sourceFile": "sport.json",
+      "releasedAt": "2026-11-17T17:21:27.145881+00:00",
+      "changesFile": "changes.txt",
+      "changes": [
+        "# PedalPRS Release",
+        "### Fixed",
+        "- Firmware de debug publicado linkado para o bootloader (0x08002000); o anterior, gravado pela atualização de firmware, deixava a placa travada no bootloader",
+        "- Atualizado o prs_sdk_fw para 2.0.0.31: corrige a calibração de eixo com faixa invertida e o recálculo da zona morta, a ordem dos efeitos de pré-processamento dos eixos e a calibração automática, que passa a mudar mínimo e máximo só no modo automático"
       ],
       "minAppVersion": null
     }
